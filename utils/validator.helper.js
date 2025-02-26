@@ -104,6 +104,70 @@ const Validator = {
       }
       return false;
     },
+    /**
+     * 
+     * @param {*} pValue 
+     * @returns 
+     */
+    isNotUndefinedAndNull(pValue) {
+      let value = pValue;
+      if (typeof value === 'string') {
+        value = pValue.trim();
+      }
+      return (value !== undefined && value !== null && value !== '' && value !== 'null' && value !== 'undefined');
+    },
+    /**
+     * 
+     * @param {*} pValue 
+     * @returns 
+     */
+    isNotUndefinedAndNullObject(pValue) {
+      let value = pValue;
+      if (typeof value === 'string') {
+        value = pValue.trim();
+      }
+      return (value !== undefined && value !== null && value !== '' && value !== 'null' && value !== 'undefined' && typeof value === 'object');
+    },
+    /**
+     * 
+     * @param {*} pValue 
+     * @returns 
+     */
+    isNullOrUndefined(pValue) {
+      return (pValue === undefined || pValue === null || (typeof pValue === 'string' && pValue.trim() === '') || pValue === 'null' || pValue === 'undefined');
+    },
+    /**
+     * 
+     * @param {*} pValue 
+     * @returns 
+     */
+    isOnlyNumber(pValue) {
+      const exp = /^\d+$/;
+      return exp.test(pValue);
+    },
+    /**
+     * 
+     * @param {*} email 
+     * @returns 
+     */
+    isValidEmail(email) {
+      if (!email) return false;
+      const REGEX_EMAIL = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; //eslint-disable-line
+      return REGEX_EMAIL.test(String(email.trim()).toLowerCase());
+    },
+    /**
+     * 
+     * @param {*} pValue 
+     * @returns 
+     */
+    isJson: function(pValue) {
+        try {
+            JSON.parse(pValue);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    },
   };
         
   module.exports = Validator;
