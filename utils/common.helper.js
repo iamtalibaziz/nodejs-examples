@@ -92,6 +92,29 @@ const CommonHelper = {
     }
     return newArr;
   },
+  /**
+   * 
+   * @param {*} value 
+   * @returns 
+   */
+  getBooleanValue: function(value) {
+    try {
+      if (typeof value === 'boolean') {
+        return value;
+      }
+
+      if (typeof value === 'string') {
+        if (value.toLowerCase() === 'false') {
+          return false;
+        } else if (value.toLowerCase() === 'true') {
+          return true;
+        }
+      }
+      return false;
+    } catch (error) {
+      return false;
+    }
+  },
 };
     
 module.exports = CommonHelper;
